@@ -31,7 +31,7 @@ app.listen(port, () => {
 });
 
 //Get all employees
-app.get('/employees', (req, res) => {
+app.get('/employee', (req, res) => {
   mysqlConnection.query('SELECT * FROM employee', (err, rows, field) => {
     if (!err) res.send(rows);
     else console.log(err);
@@ -39,7 +39,7 @@ app.get('/employees', (req, res) => {
 });
 
 //Get an employee
-app.get('/employees/:id', (req, res) => {
+app.get('/employee/:id', (req, res) => {
   mysqlConnection.query(
     'SELECT * FROM Employee WHERE EmpID =?',
     [req.params.id],
@@ -51,7 +51,7 @@ app.get('/employees/:id', (req, res) => {
 });
 
 //Delete an employee
-app.delete('/employees/:id', (req, res) => {
+app.delete('/employee/:id', (req, res) => {
   mysqlConnection.query(
     'DELETE FROM Employee WHERE EmpID =?',
     [req.params.id],
@@ -63,7 +63,7 @@ app.delete('/employees/:id', (req, res) => {
 });
 
 //Insert an employee
-app.post('/employees', (req, res) => {
+app.post('/employee', (req, res) => {
   let emp = req.body;
   let sql ='SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
   CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@Salary);';
@@ -77,7 +77,7 @@ app.post('/employees', (req, res) => {
 });
 
 //Update an employee
-app.put('/employees', (req, res) => {
+app.put('/employee', (req, res) => {
   let emp = req.body;
   let sql ='SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
   CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@Salary);';
