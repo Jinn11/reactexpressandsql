@@ -65,6 +65,7 @@ app.delete('/employee/:id', (req, res) => {
 //Insert an employee
 app.post('/employee', (req, res) => {
   let emp = req.body;
+  emp.EmpID=0;
   let sql ='SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
   CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@Salary);';
   mysqlConnection.query(
